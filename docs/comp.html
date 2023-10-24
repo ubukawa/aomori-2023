@@ -55,12 +55,12 @@ body { margin:0; padding:0; }
                 tiles: ['https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg'],
                 attribution: '地理院地図タイル（写真）-国土地理院',
                 maxzoom: 18,
-                minzoom: 8 //URL
+                minzoom: 8
             }
         },
         layers: [
             {
-                id: 'back',
+                id: 'back1',
                 type: 'background',
                 layout: {'visibility':'visible'},
                 paint: {
@@ -68,7 +68,7 @@ body { margin:0; padding:0; }
                 }
             },
             {
-                id: 'photo',
+                id: 'photo1',
                 type:'raster',
                 source: 'gsiphoto',
                 minzoom: 8
@@ -92,12 +92,12 @@ body { margin:0; padding:0; }
                 tiles: ['https://ubukawa.github.io/aomori-2023/xyz-aomori/{z}/{x}/{y}.png'],
                 attribution: 'Sentinel-2 by EC (2023)',
                 maxzoom: 14,
-                minzoom: 6 //URL
+                minzoom: 6 
             }
         },
         layers: [
             {
-                id: 'back',
+                id: 'back2',
                 type: 'background',
                 layout: {'visibility':'visible'},
                 paint: {
@@ -105,7 +105,7 @@ body { margin:0; padding:0; }
                 }
             },
             {
-                id: 'photo',
+                id: 'photo2',
                 type:'raster',
                 source: 'sentinel2',
                 minzoom: 8
