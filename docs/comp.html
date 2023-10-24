@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Comparison Map</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://ubukawa.github.io/sentinel2-Beijin20220102/maps/maplibre-gl.js'></script>
+<link href='https://ubukawa.github.io/sentinel2-Beijin20220102/maps/maplibre-gl.css' rel='stylesheet' />
+
+<style>
+body { margin:0; padding:0; }
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+ <style>
+      body {
+        overflow: hidden;
+      }
+
+      body * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+ </style>
+ <script src="https://ubukawa.github.io/sentinel2-Beijin20220102/maps/maplibre-gl-compare/maplibre-gl-compare.js"></script>
+ <link rel="stylesheet" href="https://ubukawa.github.io/sentinel2-Beijin20220102/maps/maplibre-gl-compare/maplibre-gl-compare.css" type="text/css" />
+ <div id="comparison-container">
+  <div id="before" class="map"></div>
+  <div id="after" class="map"></div>
+ </div>
+ <script>
+  var beforeMap = new maplibregl.Map({
+    container: 'before', 
+    hash: true, 
+    style: {
+        version: 8,
+        source:{
+            gsiphoto: {
+                type: 'raster',
+                tiles: ['https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg'],
+                attribution: '地理院地図タイル（写真）-国土地理院',
+                maxzoom: 18,
+                minzoom: 8 //URL
+            }
+        },
+        layers: [
+            {
+                id: 'back',
+                type: 'background',
+                layout: {'visibility':'visible'},
+                paint: {
+                    'background-color': ['rgb', 146, 171, 230]
+                }
+            },
+            {
+                id: 'photo',
+                type:'raster',
+                source: 'gsiphoto',
+                minzoom: 8
+            }
+        ]
+    }, //'https://ubukawa.github.io/sentinel2-Beijin20161229/maps/style.json', // style file path
+    center: [116.3451217, 40.0132106], // center [lng, lat]
+    zoom: 7, // zoom level at loading
+    maxZoom: 4, // min zoom
+    maxZoom: 17 // max zoom
+  });
+
+  var afterMap = new maplibregl.Map({
+    container: 'after', 
+    hash: true, 
+    style: {
+        version: 8,
+        source:{
+            sentinel2: {
+                type: 'raster',
+                tiles: ['https://ubukawa.github.io/aomori-2023/xyz-aomori/{z}/{x}/{y}.png'],
+                attribution: 'Sentinel-2 by EC (2023)',
+                maxzoom: 14,
+                minzoom: 6 //URL
+            }
+        },
+        layers: [
+            {
+                id: 'back',
+                type: 'background',
+                layout: {'visibility':'visible'},
+                paint: {
+                    'background-color': ['rgb', 146, 171, 230]
+                }
+            },
+            {
+                id: 'photo',
+                type:'raster',
+                source: 'sentinel2',
+                minzoom: 8
+            }
+        ]
+    },
+//  style: 'https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json', // style file path
+    center: [141.7967, 41.0982], // center [lng, lat]
+    zoom: 7, // zoom level at loading
+    maxZoom: 0, // min zoom
+    maxZoom: 16 // max zoom
+  });
+
+  var container = "#comparison-container";
+
+  var map = new maplibregl.Compare(beforeMap, afterMap, container, {
+    // Set this to enable comparing two maps by mouse movement:
+    // m ousemove: true
+  });
+
+  //UI
+  map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+  map.addControl(new maplibregl.ScaleControl() );
+
+  //debug
+  map.showTileBoundaries = true;
+  map.showCollisionBoxes = false;
+ </script>
+</body>
+</html>
