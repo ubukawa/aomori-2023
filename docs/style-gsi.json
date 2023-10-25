@@ -1,0 +1,9 @@
+{
+    "version":8,
+"sources":{
+"r": {"type": "raster","tiles": ["https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg"],"attribution": "地理院地図タイル（写真）","tileSize": 256,"maxzoom": 18, "minzoom": 8}},
+"layers":[
+{"id": "gsi","type":"raster","source":"r"}
+],
+"center":[141.7967, 41.0982]
+}

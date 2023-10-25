@@ -1,0 +1,9 @@
+{
+    "version":8,
+"sources":{
+"r": {"type": "raster","tiles": ["ttps://ubukawa.github.io/aomori-2023/xyz-aomori/{z}/{x}/{y}.png"],"attribution": "Copernicus Sentinel data (2023, EUROPEAN COMMISSION).<br>Observed on 2022-09-24","tileSize": 256,"maxzoom": 14}},
+"layers":[
+{"id": "sentinel2","type":"raster","source":"r"}
+],
+"center":[141.7967, 41.0982]
+}

@@ -47,34 +47,7 @@ body { margin:0; padding:0; }
   var beforeMap = new maplibregl.Map({
     container: 'before', 
     hash: true, 
-    style: {
-        version: 8,
-        source:{
-            gsiphoto: {
-                type: 'raster',
-                tiles: ['https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg'],
-                attribution: '地理院地図タイル（写真）-国土地理院',
-                maxzoom: 18,
-                minzoom: 8
-            }
-        },
-        layers: [
-            {
-                id: 'back1',
-                type: 'background',
-                layout: {'visibility':'visible'},
-                paint: {
-                    'background-color': ['rgb', 146, 171, 230]
-                }
-            },
-            {
-                id: 'photo1',
-                type:'raster',
-                source: 'gsiphoto',
-                minzoom: 8
-            }
-        ]
-    }, //'https://ubukawa.github.io/sentinel2-Beijin20161229/maps/style.json', // style file path
+    style: 'https://ubukawa.github.io/aomori-2023/style-sentinel.json', // style file path
     center: [141.7967, 41.0982], // center [lng, lat]
     zoom: 7, // zoom level at loading
     maxZoom: 4, // min zoom
@@ -84,39 +57,11 @@ body { margin:0; padding:0; }
   var afterMap = new maplibregl.Map({
     container: 'after', 
     hash: true, 
-    style: {
-        version: 8,
-        source:{
-            sentinel2: {
-                type: 'raster',
-                tiles: ['https://ubukawa.github.io/aomori-2023/xyz-aomori/{z}/{x}/{y}.png'],
-                attribution: 'Sentinel-2 by EC (2023)',
-                maxzoom: 14,
-                minzoom: 6 
-            }
-        },
-        layers: [
-            {
-                id: 'back2',
-                type: 'background',
-                layout: {'visibility':'visible'},
-                paint: {
-                    'background-color': ['rgb', 146, 171, 230]
-                }
-            },
-            {
-                id: 'photo2',
-                type:'raster',
-                source: 'sentinel2',
-                minzoom: 8
-            }
-        ]
-    },
-//  style: 'https://ubukawa.github.io/sentinel2-Beijin20220102/maps/style.json', // style file path
+    style: 'https://ubukawa.github.io/aomori-2023/style-gsi.json', // style file path
     center: [141.7967, 41.0982], // center [lng, lat]
     zoom: 7, // zoom level at loading
-    maxZoom: 0, // min zoom
-    maxZoom: 16 // max zoom
+    maxZoom: 4, // min zoom
+    maxZoom: 17 // max zoom
   });
 
   var container = "#comparison-container";
